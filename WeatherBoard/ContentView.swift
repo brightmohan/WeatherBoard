@@ -1,24 +1,40 @@
-//
-//  ContentView.swift
-//  WeatherBoard
-//
-//  Created by Mohan Bhojaraja on 20/5/2026.
-//
-
 import SwiftUI
+import WeatherFeature
+import WeatherCore
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State private var viewModel = WeatherViewModel()
 
-#Preview {
-    ContentView()
+    var body: some View {
+        NavigationStack {
+            Group {
+                if viewModel.isLoading {
+                    ProgressView("Fetching Australian weather…")
+                } else if let error = viewModel.errorMessage {
+                    ContentUnavailableView(error, systemImage: "cloud.bolt")
+                } else {
+                    List(viewModel.readings) { reading in
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(reading.city.name)
+                                    .font(.headline)
+                                Text(reading.weatherDescription)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Text(reading.temperatureDisplay)
+                                .font(.title2)
+                                .bold()
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+            }
+            .navigationTitle("🇦🇺 Weather Board")
+            .task {
+                await viewModel.fetchAll()
+            }
+        }
+    }
 }

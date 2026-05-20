@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6FD9B55A2FBD45D300250714 /* WeatherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6FD9B5592FBD45D300250714 /* WeatherCore */; };
+		6FD9B55D2FBD45E900250714 /* WeatherFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 6FD9B55C2FBD45E900250714 /* WeatherFeature */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6FBD5F1C2FBD3FA6008D3894 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FD9B55D2FBD45E900250714 /* WeatherFeature in Frameworks */,
+				6FD9B55A2FBD45D300250714 /* WeatherCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = WeatherBoard;
 			packageProductDependencies = (
+				6FD9B5592FBD45D300250714 /* WeatherCore */,
+				6FD9B55C2FBD45E900250714 /* WeatherFeature */,
 			);
 			productName = WeatherBoard;
 			productReference = 6FBD5F0E2FBD3FA5008D3894 /* WeatherBoard.app */;
@@ -195,6 +204,10 @@
 			);
 			mainGroup = 6FBD5F052FBD3FA5008D3894;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6FD9B5582FBD45D300250714 /* XCLocalSwiftPackageReference "Packages/WeatherCore" */,
+				6FD9B55B2FBD45E900250714 /* XCLocalSwiftPackageReference "Packages/WeatherFeature" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6FBD5F0F2FBD3FA5008D3894 /* Products */;
 			projectDirPath = "";
@@ -570,6 +583,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6FD9B5582FBD45D300250714 /* XCLocalSwiftPackageReference "Packages/WeatherCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/WeatherCore;
+		};
+		6FD9B55B2FBD45E900250714 /* XCLocalSwiftPackageReference "Packages/WeatherFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/WeatherFeature;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6FD9B5592FBD45D300250714 /* WeatherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeatherCore;
+		};
+		6FD9B55C2FBD45E900250714 /* WeatherFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeatherFeature;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6FBD5F062FBD3FA5008D3894 /* Project object */;
 }
