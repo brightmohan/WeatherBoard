@@ -1,0 +1,26 @@
+stages:
+  - test
+  - build
+
+variables:
+  LANG: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
+
+# Make sure Homebrew Ruby is used (not macOS system Ruby 2.6)
+.setup_ruby: &setup_ruby
+  - export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+  - ruby --version
+  - bundle install
+
+test:
+  stage: test
+  script:
+    - *setup_ruby
+    - bundle exec fastlane test
+
+build:
+  stage: build
+  script:
+    - *setup_ruby
+    - bundle exec fastlane build
+  needs: [test]
