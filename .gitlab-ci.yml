@@ -14,13 +14,19 @@ variables:
 
 test:
   stage: test
+  tags:
+    - macOS
   script:
+    - export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     - *setup_ruby
     - bundle exec fastlane test
 
 build:
   stage: build
+  tags:
+    - macOS
   script:
+    - export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
     - *setup_ruby
     - bundle exec fastlane build
   needs: [test]
