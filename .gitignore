@@ -1,0 +1,9 @@
+# Fastlane
+fastlane/test_output/
+fastlane/report.xml
+
+# Xcode
+*.xcuserstate
+xcuserdata/
+DerivedData/
+*.xccheckout

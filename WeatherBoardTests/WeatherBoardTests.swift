@@ -2,18 +2,28 @@
 //  WeatherBoardTests.swift
 //  WeatherBoardTests
 //
-//  Created by Mohan Bhojaraja on 20/5/2026.
-//
 
-import Testing
+import XCTest
+import WeatherCore
 @testable import WeatherBoard
 
-struct WeatherBoardTests {
+final class WeatherBoardTests: XCTestCase {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+    func testCityHasCorrectName() {
+        let city = City(name: "Sydney", latitude: -33.8688, longitude: 151.2093)
+        XCTAssertEqual(city.name, "Sydney")
+    }
+
+    func testWeatherReadingTemperatureDisplay() {
+        let city = City(name: "Melbourne", latitude: -37.8136, longitude: 144.9631)
+        let reading = WeatherReading(city: city, temperatureCelsius: 22.5, weatherCode: 0)
+        XCTAssertEqual(reading.temperatureDisplay, "22.5°C")
+    }
+
+    func testWeatherReadingDescription() {
+        let city = City(name: "Brisbane", latitude: -27.4698, longitude: 153.0251)
+        let reading = WeatherReading(city: city, temperatureCelsius: 28.0, weatherCode: 0)
+        XCTAssertEqual(reading.weatherDescription, "Clear sky")
     }
 
 }

@@ -1,0 +1,42 @@
+default_platform(:ios)
+
+platform :ios do
+
+  # ── Test ──────────────────────────────────────────────────────────────
+  # Runs all unit tests. Called by GitLab CI on every push.
+  # bundle exec fastlane test
+  desc "Run unit tests"
+  lane :test do
+    run_tests(
+      project: "WeatherBoard.xcodeproj",
+      scheme: "WeatherBoard",
+      devices: ["iPhone 17 Pro"],
+      clean: true
+    )
+  end
+
+  # ── Build ─────────────────────────────────────────────────────────────
+  # Builds the app without running tests. Verifies the project compiles.
+  # bundle exec fastlane build
+  desc "Build the app"
+  lane :build do
+    gym(
+      project: "WeatherBoard.xcodeproj",
+      scheme: "WeatherBoard",
+      configuration: "Debug",
+      skip_codesigning: true,
+      skip_archive: true,
+      derived_data_path: "./DerivedData"
+    )
+  end
+
+  # ── CI ────────────────────────────────────────────────────────────────
+  # Full CI pipeline: test then build. Called by .gitlab-ci.yml.
+  # bundle exec fastlane ci
+  desc "Run CI pipeline: test then build"
+  lane :ci do
+    test
+    build
+  end
+
+end
