@@ -8,8 +8,8 @@ variables:
 
 # Make sure Homebrew Ruby is used (not macOS system Ruby 2.6)
 .setup_ruby: &setup_ruby
-  - export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
   - ruby --version
+  - gem install bundler --no-document
   - bundle install
 
 test:
